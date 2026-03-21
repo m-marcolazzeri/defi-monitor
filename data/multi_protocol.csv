@@ -1,8 +1,15 @@
-timestamp,protocol,chain,symbol,apy_total,apy_base,apy_reward,tvl_usd,total_supply_usd,total_borrow_usd,utilization_rate
-2026-03-21 17:48:57 UTC,aave-v3,Arbitrum,USDC,1.4683,1.4683,0,105892887,0,0,0
-2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDT,2.2057,2.2057,0,8595187,0,0,0
-2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDC,2.3822,2.3822,0,6986546,0,0,0
-2026-03-21 17:48:57 UTC,aave-v3,Arbitrum,DAI,1.6912,1.6912,0,1787832,0,0,0
-2026-03-21 17:48:57 UTC,aave-v3,Arbitrum,USDC,1.7327,1.7327,0,806020,0,0,0
-2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDC,1.6953,1.6953,0,318403,0,0,0
-2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDC,0.0,0.0,0,20720,0,0,0
+timestamp,protocol,chain,symbol,apy_total,apy_base,apy_reward,tvl_usd,total_supply_usd,total_borrow_usd,utilization_rate,utilization_source
+2026-03-21 17:48:57 UTC,aave-v3,Arbitrum,USDC,1.4683,1.4683,0,105892887,0,0,0.0,
+2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDT,2.2057,2.2057,0,8595187,0,0,0.0,
+2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDC,2.3822,2.3822,0,6986546,0,0,0.0,
+2026-03-21 17:48:57 UTC,aave-v3,Arbitrum,DAI,1.6912,1.6912,0,1787832,0,0,0.0,
+2026-03-21 17:48:57 UTC,aave-v3,Arbitrum,USDC,1.7327,1.7327,0,806020,0,0,0.0,
+2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDC,1.6953,1.6953,0,318403,0,0,0.0,
+2026-03-21 17:48:57 UTC,compound-v3,Arbitrum,USDC,0.0,0.0,0,20720,0,0,0.0,
+2026-03-21 18:27:48 UTC,aave-v3,Arbitrum,USDC,1.467,1.467,0,105980874,0,0,0.605479,onchain
+2026-03-21 18:27:48 UTC,compound-v3,Arbitrum,USDT,2.2054,2.2054,0,8596245,0,0,0.624468,onchain
+2026-03-21 18:27:48 UTC,compound-v3,Arbitrum,USDC,2.3824,2.3824,0,6985668,0,0,0.605479,onchain
+2026-03-21 18:27:48 UTC,aave-v3,Arbitrum,DAI,1.6818,1.6818,0,1803398,0,0,0.635347,onchain
+2026-03-21 18:27:48 UTC,aave-v3,Arbitrum,USDC,1.7327,1.7327,0,806994,0,0,0.605479,onchain
+2026-03-21 18:27:48 UTC,compound-v3,Arbitrum,USDC,1.6953,1.6953,0,318788,0,0,0.605479,onchain
+2026-03-21 18:27:48 UTC,compound-v3,Arbitrum,USDC,0.0,0.0,0,20721,0,0,0.605479,onchain
