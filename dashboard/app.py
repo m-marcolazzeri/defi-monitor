@@ -1,24 +1,19 @@
 """
 DeFi Strategy Monitor — Dashboard
 ------------------------------------
-Dashboard interattiva che visualizza i dati raccolti dalla pipeline
-e i risultati del modello di anomaly detection.
+Dashboard interattiva con:
+- Vista panoramica: tutti i token e protocolli insieme
+- Tabs separate per USDC, USDT, DAI
+- Anomaly detection results
 
 ESECUZIONE LOCALE:
     streamlit run dashboard/app.py
-
-DEPLOY:
-    1. Vai su share.streamlit.io
-    2. Connetti il tuo repo GitHub
-    3. Seleziona questo file come entry point
 """
 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import os
-from datetime import datetime
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 
@@ -30,14 +25,12 @@ st.set_page_config(
 
 MULTI_PROTOCOL_FILE = "data/multi_protocol.csv"
 ANOMALIES_FILE      = "data/anomalies.csv"
-
-# Benchmark rate: T-Bill USA ~5% APY (aggiorna periodicamente)
-RISK_FREE_RATE = 5.0
+RISK_FREE_RATE      = 5.0
 
 
 # ─── Data Loading ─────────────────────────────────────────────────────────────
 
-@st.cache_data(ttl=3600)  # cache per 1 ora
+@st.cache_data(ttl=3600)
 def load_multi_protocol():
     if not os.path.exists(MULTI_PROTOCOL_FILE):
         return pd.DataFrame()
@@ -55,218 +48,167 @@ def load_anomalies():
     return df
 
 
-# ─── Layout ───────────────────────────────────────────────────────────────────
+# ─── Helpers ──────────────────────────────────────────────────────────────────
+
+def render_snapshot(df):
+    latest = (
+        df.sort_values("timestamp")
+        .groupby(["protocol", "symbol"])
+        .last()
+        .reset_index()
+        .sort_values("apy_total", ascending=False)
+    )
+    if latest.empty:
+        st.info("Nessun dato disponibile.")
+        return
+    cols = st.columns(min(len(latest), 4))
+    for i, (_, row) in enumerate(latest.iterrows()):
+        with cols[i % 4]:
+            delta = row["apy_total"] - RISK_FREE_RATE
+            st.metric(
+                label=f"{row['protocol']} — {row['symbol']}",
+                value=f"{row['apy_total']:.2f}%",
+                delta=f"{delta:+.2f}% vs T-Bill"
+            )
+            st.caption(
+                f"Util: {row['utilization_rate']*100:.1f}% | "
+                f"TVL: ${row['tvl_usd']/1e6:.1f}M"
+            )
+
+
+def render_apy_chart(df, title):
+    fig = px.line(
+        df, x="timestamp", y="apy_total",
+        color="protocol", line_dash="symbol",
+        title=title,
+        labels={"apy_total": "APY (%)", "timestamp": "Data"}
+    )
+    fig.add_hline(
+        y=RISK_FREE_RATE, line_dash="dash", line_color="gray",
+        annotation_text=f"T-Bill {RISK_FREE_RATE}%",
+        annotation_position="bottom right"
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_utilization_chart(df, title):
+    if "utilization_source" in df.columns:
+        df = df[df["utilization_source"] == "onchain"]
+    fig = px.line(
+        df, x="timestamp", y="utilization_rate",
+        color="protocol", line_dash="symbol",
+        title=title,
+        labels={"utilization_rate": "Utilization Rate", "timestamp": "Data"}
+    )
+    fig.add_hline(
+        y=0.90, line_dash="dash", line_color="red",
+        annotation_text="Soglia rischio (90%)",
+        annotation_position="bottom right"
+    )
+    fig.update_yaxes(tickformat=".0%")
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_scatter(df, title):
+    latest = (
+        df.sort_values("timestamp")
+        .groupby(["protocol", "symbol"])
+        .last()
+        .reset_index()
+    )
+    if latest.empty:
+        return
+    latest["label"] = latest["protocol"] + " " + latest["symbol"]
+    fig = px.scatter(
+        latest,
+        x="utilization_rate", y="apy_total",
+        size="tvl_usd", color="protocol", text="label",
+        title=title,
+        labels={
+            "utilization_rate": "Utilization Rate (rischio)",
+            "apy_total": "APY (%)"
+        }
+    )
+    fig.update_xaxes(tickformat=".0%")
+    fig.add_hline(y=RISK_FREE_RATE, line_dash="dash", line_color="gray")
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_tab(df, label):
+    st.subheader(f"📍 Snapshot {label}")
+    render_snapshot(df)
+    st.divider()
+    col1, col2 = st.columns(2)
+    with col1:
+        render_apy_chart(df, f"APY — {label} su Arbitrum")
+    with col2:
+        render_utilization_chart(df, f"Utilization Rate — {label}")
+    st.divider()
+    st.caption("Il protocollo ideale è in alto a sinistra: alto APY, bassa utilization rate.")
+    render_scatter(df, f"Risk vs Yield — {label}")
+
+
+# ─── Header ───────────────────────────────────────────────────────────────────
 
 st.title("📊 DeFi Strategy Monitor")
 st.markdown(
     "Monitoring system for market-neutral stablecoin yield strategies — "
     "replicating [Dialectic's Chronograph fund](https://dialectic.ky) approach."
 )
-
+st.caption(f"Benchmark: T-Bill USA {RISK_FREE_RATE}%")
 st.divider()
 
-df = load_multi_protocol()
+df_all = load_multi_protocol()
 df_anomalies = load_anomalies()
 
-if df.empty:
-    st.warning(
-        "Nessun dato trovato. Esegui prima la pipeline:\n\n"
-        "```bash\npython pipeline/multi_protocol.py\n```"
-    )
+if df_all.empty:
+    st.warning("Nessun dato trovato. Esegui prima: `python pipeline/multi_protocol.py`")
     st.stop()
 
+st.caption(f"Ultimo aggiornamento: {df_all['timestamp'].max()}")
 
-# ─── Sidebar: Filtri ──────────────────────────────────────────────────────────
+# ─── Tabs ─────────────────────────────────────────────────────────────────────
 
-with st.sidebar:
-    st.header("Filtri")
+tab_overview, tab_usdc, tab_usdt, tab_dai, tab_anomalie = st.tabs([
+    "🌐 Panoramica", "🔵 USDC", "🟢 USDT", "🟡 DAI", "🚨 Anomalie"
+])
 
-    protocols = sorted(df["protocol"].unique())
-    selected_protocols = st.multiselect(
-        "Protocolli", protocols, default=protocols
+with tab_overview:
+    render_tab(df_all, "Tutti i Protocolli")
+
+with tab_usdc:
+    render_tab(df_all[df_all["symbol"].isin(["USDC", "USDC.e"])], "USDC")
+
+with tab_usdt:
+    render_tab(df_all[df_all["symbol"] == "USDT"], "USDT")
+
+with tab_dai:
+    render_tab(df_all[df_all["symbol"] == "DAI"], "DAI")
+
+with tab_anomalie:
+    st.subheader("🚨 Anomaly Detection")
+    st.caption(
+        "Isolation Forest rileva combinazioni anomale di APY, TVL e utilization rate. "
+        "Serve almeno 1 settimana di dati storici."
     )
-
-    symbols = sorted(df["symbol"].unique())
-    selected_symbol = st.selectbox("Token", symbols, index=0)
-
-    st.divider()
-    st.metric("Benchmark (T-Bill USA)", f"{RISK_FREE_RATE:.1f}%")
-    st.caption("Ogni strategia deve battere questo tasso per essere efficace.")
-
-
-# ─── Filtra dati ──────────────────────────────────────────────────────────────
-
-df_filtered = df[
-    (df["protocol"].isin(selected_protocols)) &
-    (df["symbol"] == selected_symbol)
-]
-
-
-# ─── Sezione 1: Snapshot attuale ──────────────────────────────────────────────
-
-st.subheader("📍 Snapshot Attuale")
-st.caption(f"Ultimo aggiornamento: {df_filtered['timestamp'].max()}")
-
-latest = (
-    df_filtered
-    .sort_values("timestamp")
-    .groupby("protocol")
-    .last()
-    .reset_index()
-    .sort_values("apy_total", ascending=False)
-)
-
-cols = st.columns(len(latest))
-for i, (_, row) in enumerate(latest.iterrows()):
-    with cols[i]:
-        delta_vs_benchmark = row["apy_total"] - RISK_FREE_RATE
-        st.metric(
-            label=row["protocol"],
-            value=f"{row['apy_total']:.2f}%",
-            delta=f"{delta_vs_benchmark:+.2f}% vs T-Bill"
+    if df_anomalies.empty:
+        st.info(
+            "Nessuna anomalia rilevata — oppure il modello non è ancora stato eseguito.\n\n"
+            "```bash\npython models/anomaly_detector.py\n```"
         )
-        st.caption(
-            f"Util: {row['utilization_rate']*100:.1f}% | "
-            f"TVL: ${row['tvl_usd']/1e6:.1f}M"
+    else:
+        st.warning(f"⚠️ {len(df_anomalies)} anomalie rilevate")
+        st.dataframe(
+            df_anomalies[[
+                "timestamp", "protocol", "symbol",
+                "apy_total", "tvl_usd", "utilization_rate", "anomaly_score"
+            ]].sort_values("anomaly_score").head(10),
+            use_container_width=True
         )
 
-
-# ─── Sezione 2: APY nel tempo ─────────────────────────────────────────────────
-
-st.divider()
-st.subheader("📈 APY nel Tempo")
-
-fig_apy = px.line(
-    df_filtered,
-    x="timestamp",
-    y="apy_total",
-    color="protocol",
-    title=f"APY — {selected_symbol} su Arbitrum",
-    labels={"apy_total": "APY (%)", "timestamp": "Data"},
-)
-
-# Aggiungi linea benchmark
-fig_apy.add_hline(
-    y=RISK_FREE_RATE,
-    line_dash="dash",
-    line_color="gray",
-    annotation_text=f"T-Bill {RISK_FREE_RATE}%",
-    annotation_position="bottom right"
-)
-
-st.plotly_chart(fig_apy, use_container_width=True)
-
-
-# ─── Sezione 3: Utilization Rate ──────────────────────────────────────────────
-
-st.subheader("💧 Utilization Rate nel Tempo")
-st.caption(
-    "L'utilization rate misura quanta liquidità è stata presa in prestito. "
-    "Valori >90% segnalano rischio di illiquidità — potresti non riuscire a ritirare i fondi."
-)
-
-fig_util = px.line(
-    df_filtered,
-    x="timestamp",
-    y="utilization_rate",
-    color="protocol",
-    title=f"Utilization Rate — {selected_symbol}",
-    labels={"utilization_rate": "Utilization Rate", "timestamp": "Data"},
-)
-
-fig_util.add_hline(
-    y=0.90,
-    line_dash="dash",
-    line_color="red",
-    annotation_text="Soglia rischio (90%)",
-    annotation_position="bottom right"
-)
-
-fig_util.update_yaxes(tickformat=".0%")
-st.plotly_chart(fig_util, use_container_width=True)
-
-
-# ─── Sezione 4: TVL ───────────────────────────────────────────────────────────
-
-st.subheader("🏦 TVL nel Tempo")
-st.caption(
-    "Un calo improvviso del TVL indica fuga di liquidità — "
-    "spesso il primo segnale visibile di un exploit o di una crisi di fiducia."
-)
-
-fig_tvl = px.area(
-    df_filtered,
-    x="timestamp",
-    y="tvl_usd",
-    color="protocol",
-    title=f"Total Value Locked — {selected_symbol}",
-    labels={"tvl_usd": "TVL (USD)", "timestamp": "Data"},
-)
-
-st.plotly_chart(fig_tvl, use_container_width=True)
-
-
-# ─── Sezione 5: Confronto protocolli ─────────────────────────────────────────
-
-st.divider()
-st.subheader("⚖️ Confronto Protocolli — Risk vs Yield")
-st.caption(
-    "Il protocollo ideale è in alto a sinistra: alto APY, bassa utilization rate. "
-    "Questa è la matrice decisionale per l'allocazione del capitale."
-)
-
-if not latest.empty:
-    fig_scatter = px.scatter(
-        latest,
-        x="utilization_rate",
-        y="apy_total",
-        size="tvl_usd",
-        color="protocol",
-        text="protocol",
-        title="APY vs Utilization Rate (dimensione = TVL)",
-        labels={
-            "utilization_rate": "Utilization Rate (rischio liquidità)",
-            "apy_total": "APY (%)"
-        }
-    )
-    fig_scatter.update_xaxes(tickformat=".0%")
-    fig_scatter.add_hline(y=RISK_FREE_RATE, line_dash="dash", line_color="gray")
-    st.plotly_chart(fig_scatter, use_container_width=True)
-
-
-# ─── Sezione 6: Anomalie ──────────────────────────────────────────────────────
-
-st.divider()
-st.subheader("🚨 Anomaly Detection")
-
-if df_anomalies.empty:
-    st.info(
-        "Nessuna anomalia rilevata — oppure il modello non è ancora stato eseguito.\n\n"
-        "```bash\npython models/anomaly_detector.py\n```"
-    )
-else:
-    n_anomalies = len(df_anomalies[df_anomalies["symbol"] == selected_symbol])
-    st.warning(f"⚠️ {n_anomalies} anomalie rilevate per {selected_symbol}")
-
-    df_anom_filtered = df_anomalies[
-        (df_anomalies["symbol"] == selected_symbol) &
-        (df_anomalies["protocol"].isin(selected_protocols))
-    ].sort_values("anomaly_score")
-
-    st.dataframe(
-        df_anom_filtered[[
-            "timestamp", "protocol", "symbol",
-            "apy_total", "tvl_usd", "utilization_rate", "anomaly_score"
-        ]].head(10),
-        use_container_width=True
-    )
-
-
-# ─── Footer ───────────────────────────────────────────────────────────────────
-
 st.divider()
 st.caption(
-    "Data source: [DefiLlama](https://defillama.com) · "
+    "Data source: [DefiLlama](https://defillama.com) + Aave v3 on-chain (Web3.py) · "
     "Updated daily via GitHub Actions · "
     "Built to study institutional DeFi strategy management"
 )
