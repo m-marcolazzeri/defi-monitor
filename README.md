@@ -1,98 +1,62 @@
 # DeFi Strategy Monitor
 
-A data engineering and ML system that replicates and monitors institutional DeFi yield strategies — built as a practical study of how professional operators like [Dialectic](https://dialectic.ky) manage capital on-chain.
+A data engineering and ML system for monitoring institutional-grade stablecoin yield strategies across DeFi lending protocols on Arbitrum.
 
-## What This Project Does
+## What it does
 
-This system monitors, measures and analyzes **market-neutral stablecoin yield strategies** (equivalent to Dialectic's Chronograph fund) across multiple DeFi lending protocols on Arbitrum.
+This project tracks, compares and analyzes market-neutral yield opportunities on stablecoins across multiple DeFi protocols. It collects APY, TVL and utilization rate data daily, runs an anomaly detection model to flag unusual behavior, and visualizes everything in a live dashboard.
 
-It answers three questions that matter to any DeFi operator:
+The core question it tries to answer is: given a pool of stablecoin capital, where is the best risk-adjusted yield right now, and is anything going wrong?
 
-1. **Where is the best risk-adjusted yield right now?** — across Aave, Compound, Morpho and others
-2. **Is something going wrong?** — anomaly detection on TVL, APY and utilization rate
-3. **How has the strategy performed over time?** — risk-adjusted return metrics, benchmarked against the risk-free rate
-
-## Architecture
-
-```
-DATA SOURCES                  PIPELINE              OUTPUT
-────────────────────          ─────────────         ──────────────────────
-DefiLlama API            →                    →     CSV historical data
-On-chain via Web3.py     →    GitHub Actions  →     Streamlit Dashboard
-                              (daily cron)    →     Anomaly alerts
-```
-
-### Project Structure
+## Project structure
 
 ```
 defi-monitor/
-│
 ├── pipeline/
-│   ├── aave_tracker.py         # Collects APY, TVL, utilization rate daily
-│   └── multi_protocol.py       # Extends tracking to Compound, Morpho, Spark
-│
+│   └── multi_protocol.py       # Daily data collection from DefiLlama API
 ├── models/
-│   └── anomaly_detector.py     # Isolation Forest on APY + TVL time series
-│
+│   └── anomaly_detector.py     # Isolation Forest on APY, TVL and utilization rate
 ├── dashboard/
-│   └── app.py                  # Streamlit dashboard (live at [URL])
-│
-├── data/
-│   └── aave_usdc_arbitrum.csv  # Auto-updated daily via GitHub Actions
-│
-├── notebooks/
-│   └── 01_exploratory.ipynb    # EDA and strategy analysis
-│
+│   └── app.py                  # Streamlit dashboard
+├── data/                       # CSV files, auto-updated daily via GitHub Actions
+├── notebooks/                  # Exploratory analysis
 └── .github/workflows/
-    └── collect_data.yml        # Daily data collection automation
+    └── collect_data.yml        # Automation
 ```
 
-## Strategy: Chronograph Replication
+## How it works
 
-The **Chronograph** strategy (as described in Dialectic's fund documentation) is a market-neutral USD-denominated yield strategy: deposit stablecoins across lending protocols, optimize allocation for maximum risk-adjusted return.
+The pipeline fetches data from the [DefiLlama API](https://defillama.com) and stores it as a growing CSV dataset. GitHub Actions runs the pipeline every day at 9:00 UTC and commits the new data automatically.
 
-This project replicates that logic at a small scale:
+The anomaly detector uses Isolation Forest to learn what "normal" looks like across APY, TVL and utilization rate, and flags observations that deviate significantly. Sudden TVL drops, APY spikes and extreme utilization rates are the main signals it looks for.
 
-- Capital deployed: ~$22 USDC on Aave v3 Arbitrum
-- Benchmark: US T-Bill rate (~5% APY)
-- Goal: understand how APY, utilization rate and TVL interact — and build the monitoring infrastructure that a professional operator needs
+The dashboard lets you compare protocols side by side, track metrics over time and see which anomalies have been flagged.
 
-## Metrics Tracked
+## Getting started
 
-| Metric | Why It Matters |
-|---|---|
-| APY (base + reward) | Raw yield available to depositors |
-| Utilization Rate | % of liquidity borrowed — drives APY |
-| TVL | Size and health of the protocol |
-| APY spread vs benchmark | Are we beating the risk-free rate? |
-| Anomaly score | Is something structurally wrong? |
+```bash
+git clone https://github.com/m-marcolazzeri/defi-monitor
+cd defi-monitor
+pip install -r requirements.txt
+python pipeline/multi_protocol.py
+```
 
-## ML Component: Anomaly Detection
+To run the dashboard locally:
 
-An Isolation Forest model runs daily on the collected time series. It flags anomalous combinations of APY, TVL and utilization rate — the early warning signal that a protocol may be under stress or exploited.
-
-This mirrors the kind of risk monitoring that institutional DeFi operators run internally to protect capital from smart contract exploits and liquidity crises.
+```bash
+streamlit run dashboard/app.py
+```
 
 ## Stack
 
-- **Python** — Pandas, Requests, Scikit-learn
-- **DefiLlama API** — free, no API key required
-- **GitHub Actions** — automated daily data collection
-- **Streamlit** — live dashboard
+Python, Pandas, Scikit-learn, Streamlit, Plotly, GitHub Actions, DefiLlama API.
 
-## Setup
+## Metrics tracked
 
-```bash
-git clone https://github.com/YOUR_USERNAME/REPO_NAME
-cd REPO_NAME
-pip install -r requirements.txt
-python pipeline/aave_tracker.py
-```
-
-## Context
-
-This project was built as part of a practical study of institutional DeFi strategy management, specifically to understand how operators like Dialectic monitor and optimize yield strategies on infrastructure like [Makina](https://dialectic.ky/editorial/the-makina-blue-chip-thesis).
-
----
-
-*Data is collected automatically every day via GitHub Actions. The dataset grows over time and feeds the anomaly detection model.*
+| Metric | Description |
+|---|---|
+| APY (base + reward) | Total annualized yield for depositors |
+| Utilization rate | Share of available liquidity that has been borrowed |
+| TVL | Total capital deposited in the protocol |
+| APY vs benchmark | Spread over the US T-Bill rate |
+| Anomaly score | Model output flagging structural anomalies |
