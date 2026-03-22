@@ -105,6 +105,7 @@ def build_row(pool: dict, timestamp: str, onchain_rates: dict) -> dict:
 
     return {
         "timestamp":          timestamp,
+        "pool_id":            pool.get("pool", ""),   # unique DefiLlama pool identifier
         "protocol":           protocol,
         "protocol_type":      protocol_type,
         "chain":              pool.get("chain"),

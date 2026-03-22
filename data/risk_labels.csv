@@ -1,0 +1,18 @@
+protocol,symbol,timestamp,chain,apy_total,apy_base,apy_reward,tvl_usd,total_supply_usd,total_borrow_usd,utilization_rate,utilization_source,protocol_type,risk_label,risk_flags
+aave-v3,DAI,2026-03-22 11:04:51+00:00,Arbitrum,1.6807,1.6807,0.0,1802968,0,0,0.63515,onchain,lending,green,none
+aave-v3,USDC,2026-03-22 11:04:51+00:00,Arbitrum,1.4683,1.4683,0.0,105819644,0,0,0.605771,onchain,lending,green,none
+allbridge-classic,USDC,2026-03-22 11:04:51+00:00,Arbitrum,0.0259,0.0259,0.0,589359,0,0,0.605793,onchain,bridge,yellow,"tvl_low ($589,359)"
+autofinance,USDC,2026-03-22 11:04:51+00:00,Arbitrum,4.5079,3.0295,1.4784,1345062,0,0,0.605793,onchain,yield_aggregator,green,none
+beefy,USDC,2026-03-22 11:04:51+00:00,Arbitrum,2.3839,0.0,0.0,1534917,0,0,0.605793,onchain,yield_aggregator,green,none
+compound-v3,USDC,2026-03-22 11:04:51+00:00,Arbitrum,2.3839,2.3839,0.0,6975378,0,0,0.662017,onchain,lending,green,none
+compound-v3,USDT,2026-03-22 11:04:51+00:00,Arbitrum,2.421,2.421,0.0,6626142,0,0,0.67249,onchain,lending,green,none
+deltaprime,USDC,2026-03-22 11:04:51+00:00,Arbitrum,6.6664,6.6664,0.0,770299,0,0,0.0,defillama,lending,yellow,"tvl_low ($770,299)"
+dolomite,USDC,2026-03-22 11:04:51+00:00,Arbitrum,3.5289,3.5289,0.0,2253819,0,0,0.0,defillama,lending,green,none
+euler-v2,USDC,2026-03-22 11:04:51+00:00,Arbitrum,0.0464,0.0464,0.0,588003,0,0,0.0,defillama,lending,yellow,"tvl_low ($588,003)"
+fluid-lending,USDC,2026-03-22 11:04:51+00:00,Arbitrum,6.97,5.9,1.07,39720056,0,0,0.0,defillama,lending,green,none
+gains-network,USDC,2026-03-22 11:04:51+00:00,Arbitrum,5.2744,5.2744,0.0,11157142,0,0,0.605793,onchain,perpetuals_vault,green,none
+harmonix-finance,USDC,2026-03-22 11:04:51+00:00,Arbitrum,4.5943,4.5943,0.0,987110,0,0,0.605793,onchain,structured_product,yellow,"tvl_low ($987,110)"
+woofi-earn,USDC,2026-03-22 11:04:51+00:00,Arbitrum,4.7407,4.7407,0.0,1195028,0,0,0.605793,onchain,yield_aggregator,green,none
+yo-protocol,USDC,2026-03-22 11:04:51+00:00,Arbitrum,17.0028,5.0028,12.0,582273,0,0,0.605793,onchain,unknown,red,"tvl_low ($582,273); apy_anomaly (17.0% vs median 4.5%)"
+zerobase-cedefi,USDC,2026-03-22 11:04:51+00:00,Arbitrum,9.0,7.0,2.0,814000,0,0,0.605793,onchain,cedefi,yellow,"tvl_low ($814,000)"
+zerobase-cedefi,USDT,2026-03-22 11:04:51+00:00,Arbitrum,9.0,7.0,2.0,7945704,0,0,0.628362,onchain,cedefi,green,none
