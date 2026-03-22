@@ -13,3 +13,10 @@ timestamp,protocol,chain,symbol,apy_total,apy_base,apy_reward,tvl_usd,total_supp
 2026-03-21 18:27:48 UTC,aave-v3,Arbitrum,USDC,1.7327,1.7327,0,806994,0,0,0.605479,onchain
 2026-03-21 18:27:48 UTC,compound-v3,Arbitrum,USDC,1.6953,1.6953,0,318788,0,0,0.605479,onchain
 2026-03-21 18:27:48 UTC,compound-v3,Arbitrum,USDC,0.0,0.0,0,20721,0,0,0.605479,onchain
+2026-03-22 09:57:53 UTC,aave-v3,Arbitrum,USDC,1.4654,1.4654,0,106094115,0,0,0.0,defillama
+2026-03-22 09:57:53 UTC,compound-v3,Arbitrum,USDC,2.3839,2.3839,0,6974694,0,0,0.0,defillama
+2026-03-22 09:57:53 UTC,compound-v3,Arbitrum,USDT,2.4221,2.4221,0,6617249,0,0,0.0,defillama
+2026-03-22 09:57:53 UTC,aave-v3,Arbitrum,DAI,1.6807,1.6807,0,1802198,0,0,0.0,defillama
+2026-03-22 09:57:53 UTC,aave-v3,Arbitrum,USDC,1.7328,1.7328,0,807778,0,0,0.0,defillama
+2026-03-22 09:57:53 UTC,compound-v3,Arbitrum,USDC,1.6954,1.6954,0,319082,0,0,0.0,defillama
+2026-03-22 09:57:53 UTC,compound-v3,Arbitrum,USDC,0.0,0.0,0,20719,0,0,0.0,defillama

@@ -1,0 +1,2 @@
+timestamp,protocol,chain,symbol,apy_total,apy_base,apy_reward,tvl_usd,total_supply_usd,total_borrow_usd,utilization_rate,utilization_source,apy_total_pct_change,tvl_usd_pct_change,anomaly_label,anomaly_score,is_anomaly
+2026-03-21 18:27:48+00:00,compound-v3,Arbitrum,USDC,1.6953,1.6953,0,318788,0,0,0.605479,onchain,5.0,5.0,-1,-0.7416423870358976,True
