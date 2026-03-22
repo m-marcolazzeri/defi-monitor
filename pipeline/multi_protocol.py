@@ -1,9 +1,10 @@
 """
 multi_protocol.py
 -----------------
-Collects APY, TVL and utilization rate for stablecoin pools on Arbitrum
-from DefiLlama, with utilization rate overridden by on-chain Aave v3 data
-where available.
+Collects APY, TVL and utilization rate for stablecoin pools on Arbitrum.
+
+Protocols are selected dynamically based on TVL threshold rather than
+a hardcoded list — this captures new protocols automatically as they grow.
 
 Usage:
     python pipeline/multi_protocol.py
@@ -27,7 +28,11 @@ except ImportError:
 OUTPUT_FILE    = "data/multi_protocol.csv"
 TARGET_CHAINS  = ["Arbitrum"]
 TARGET_SYMBOLS = ["USDC", "USDT", "DAI", "USDC.e"]
-PROTOCOLS      = ["aave-v3", "compound-v3", "morpho", "spark", "fluid"]
+MIN_TVL_USD    = 500_000   # minimum TVL filter — keeps only established protocols
+
+# Protocols explicitly excluded regardless of TVL
+# (e.g. known high-risk, deprecated, or misleading APY sources)
+EXCLUDED_PROTOCOLS = []
 
 
 def fetch_pools() -> list[dict]:
@@ -37,11 +42,16 @@ def fetch_pools() -> list[dict]:
 
 
 def filter_pools(pools: list[dict]) -> list[dict]:
+    """
+    Filter pools by chain, symbol, TVL and exclusion list.
+    No hardcoded protocol names — any protocol meeting the criteria is included.
+    """
     return [
         p for p in pools
-        if p.get("project") in PROTOCOLS
-        and p.get("chain") in TARGET_CHAINS
+        if p.get("chain") in TARGET_CHAINS
         and p.get("symbol") in TARGET_SYMBOLS
+        and (p.get("tvlUsd") or 0) >= MIN_TVL_USD
+        and p.get("project") not in EXCLUDED_PROTOCOLS
     ]
 
 
@@ -86,20 +96,21 @@ def save_snapshot(rows: list[dict]) -> pd.DataFrame:
 
 def print_summary(df: pd.DataFrame):
     print(f"\n{'='*60}")
-    print("  Stablecoin yield snapshot — Arbitrum")
+    print(f"  Stablecoin yield snapshot — Arbitrum (TVL > ${MIN_TVL_USD:,.0f})")
     print(f"{'='*60}")
 
     for _, row in df.sort_values("apy_total", ascending=False).iterrows():
         print(
-            f"\n  {row['protocol']:<20} {row['symbol']:<8}"
-            f"\n  APY:          {row['apy_total']:.2f}%"
-            f"\n  Utilization:  {row['utilization_rate']*100:.1f}% [{row.get('utilization_source', '?')}]"
-            f"\n  TVL:          ${row['tvl_usd']:,.0f}"
+            f"\n  {row['protocol']:<25} {row['symbol']:<8}"
+            f"\n  APY:         {row['apy_total']:.2f}%"
+            f"\n  Utilization: {row['utilization_rate']*100:.1f}% [{row.get('utilization_source', '?')}]"
+            f"\n  TVL:         ${row['tvl_usd']:,.0f}"
         )
 
     best = df.sort_values("apy_total", ascending=False).iloc[0]
     print(f"\n  Best yield: {best['protocol']} {best['symbol']} — {best['apy_total']:.2f}%")
-    print(f"  Saved to:   {OUTPUT_FILE}\n")
+    print(f"  Protocols tracked: {df['protocol'].nunique()}")
+    print(f"  Saved to: {OUTPUT_FILE}\n")
 
 
 def main():
@@ -109,7 +120,7 @@ def main():
     try:
         pools    = fetch_pools()
         filtered = filter_pools(pools)
-        print(f"  {len(pools)} total pools — {len(filtered)} matching filters")
+        print(f"  {len(pools)} total pools — {len(filtered)} matching filters (TVL > ${MIN_TVL_USD:,.0f})")
 
         if not filtered:
             print("  No pools found. Check filters.")
