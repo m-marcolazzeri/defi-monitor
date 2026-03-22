@@ -1,62 +1,59 @@
-# DeFi Strategy Monitor
+# defi-monitor
 
-A data engineering and ML system for monitoring institutional-grade stablecoin yield strategies across DeFi lending protocols on Arbitrum.
+A data pipeline and ML system for monitoring stablecoin yield strategies across DeFi lending protocols on Arbitrum.
 
-## What it does
+Tracks APY, TVL and utilization rate daily, runs anomaly detection to flag unusual protocol behavior, and visualizes everything in a live dashboard. Built to study how institutional DeFi operators like [Dialectic](https://dialectic.ky) monitor and optimize yield strategies.
 
-This project tracks, compares and analyzes market-neutral yield opportunities on stablecoins across multiple DeFi protocols. It collects APY, TVL and utilization rate data daily, runs an anomaly detection model to flag unusual behavior, and visualizes everything in a live dashboard.
+## Architecture
 
-The core question it tries to answer is: given a pool of stablecoin capital, where is the best risk-adjusted yield right now, and is anything going wrong?
+```
+DefiLlama API  ─┐
+                ├─▶  pipeline/multi_protocol.py  ─▶  data/multi_protocol.csv
+Aave v3 RPC   ─┘                                          │
+                                                           ▼
+                                               models/anomaly_detector.py
+                                                           │
+                                                           ▼
+                                               dashboard/app.py  (Streamlit)
+```
 
-## Project structure
+GitHub Actions runs the pipeline daily at 09:00 UTC and commits new data automatically.
+
+## Structure
 
 ```
 defi-monitor/
 ├── pipeline/
-│   └── multi_protocol.py       # Daily data collection from DefiLlama API
+│   └── multi_protocol.py       # Data collection: DefiLlama + on-chain Web3
 ├── models/
-│   └── anomaly_detector.py     # Isolation Forest on APY, TVL and utilization rate
+│   └── anomaly_detector.py     # Isolation Forest on APY, TVL, utilization rate
 ├── dashboard/
 │   └── app.py                  # Streamlit dashboard
-├── data/                       # CSV files, auto-updated daily via GitHub Actions
-├── notebooks/                  # Exploratory analysis
+├── web3_utils.py               # Aave v3 on-chain data reader
+├── data/                       # Auto-updated CSVs (via GitHub Actions)
 └── .github/workflows/
-    └── collect_data.yml        # Automation
+    └── collect_data.yml
 ```
 
-## How it works
-
-The pipeline fetches data from the [DefiLlama API](https://defillama.com) and stores it as a growing CSV dataset. GitHub Actions runs the pipeline every day at 9:00 UTC and commits the new data automatically.
-
-The anomaly detector uses Isolation Forest to learn what "normal" looks like across APY, TVL and utilization rate, and flags observations that deviate significantly. Sudden TVL drops, APY spikes and extreme utilization rates are the main signals it looks for.
-
-The dashboard lets you compare protocols side by side, track metrics over time and see which anomalies have been flagged.
-
-## Getting started
+## Quickstart
 
 ```bash
 git clone https://github.com/m-marcolazzeri/defi-monitor
 cd defi-monitor
 pip install -r requirements.txt
 python pipeline/multi_protocol.py
-```
-
-To run the dashboard locally:
-
-```bash
 streamlit run dashboard/app.py
 ```
 
-## Stack
-
-Python, Pandas, Scikit-learn, Streamlit, Plotly, GitHub Actions, DefiLlama API.
-
-## Metrics tracked
+## Metrics
 
 | Metric | Description |
 |---|---|
-| APY (base + reward) | Total annualized yield for depositors |
-| Utilization rate | Share of available liquidity that has been borrowed |
-| TVL | Total capital deposited in the protocol |
-| APY vs benchmark | Spread over the US T-Bill rate |
-| Anomaly score | Model output flagging structural anomalies |
+| `apy_total` | Annualized yield for depositors (base + rewards) |
+| `utilization_rate` | Share of available liquidity currently borrowed |
+| `tvl_usd` | Total capital deposited in the protocol |
+| `anomaly_score` | Isolation Forest score — more negative = more anomalous |
+
+## Stack
+
+Python · Pandas · Scikit-learn · Web3.py · Streamlit · Plotly · DefiLlama API · GitHub Actions
