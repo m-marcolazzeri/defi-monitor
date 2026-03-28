@@ -16,17 +16,20 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install pipeline dependencies
-        run: pip install requests pandas web3
+      - name: Install dependencies
+        run: pip install requests pandas web3 scikit-learn
 
       - name: Run pipeline
         run: python pipeline/multi_protocol.py
 
-      - name: Install model dependencies
-        run: pip install scikit-learn
-
       - name: Run anomaly detection
         run: python models/anomaly_detector.py
+
+      - name: Run risk classifier
+        run: python models/risk_classifier.py
+
+      - name: Run rebalancing advisor
+        run: python models/rebalancing_advisor.py
 
       - name: Commit new data
         run: |
