@@ -1,21 +1,21 @@
 pool_id,timestamp,protocol,chain,symbol,apy_total,apy_base,apy_reward,tvl_usd,total_supply_usd,total_borrow_usd,utilization_rate,utilization_source,protocol_type,risk_label,risk_flags
-03c3a7fe-96e7-438a-98fb-950b438e6ffc,2026-04-07 12:00:34+00:00,zerobase-cedefi,Arbitrum,USDC,9.0,7.0,2.0,813028,0,0,,,cedefi,yellow,"tvl_low ($813,028)"
-0c795123-f6a0-412f-92e8-11fbb598ac08,2026-04-07 12:00:34+00:00,yo-protocol,Arbitrum,USDC,5.0298,5.0298,0.0,553618,0,0,,,unknown,yellow,"tvl_low ($553,618)"
-1550613c-d60c-4d78-b370-0a7ec8a24dc7,2026-04-07 12:00:34+00:00,harmonix-finance,Arbitrum,USDC,5.5112,5.5112,0.0,915938,0,0,,,structured_product,yellow,"tvl_low ($915,938)"
-218505e7-996f-4a82-a845-6cf85734b00e,2026-04-07 12:00:34+00:00,woofi-earn,Arbitrum,USDC,4.7419,4.7419,0.0,1135304,0,0,,,yield_aggregator,green,none
-41ef5890-d6f4-4c54-9c39-4505a7bac672,2026-04-07 12:00:34+00:00,deltaprime,Arbitrum,USDC,7.2013,7.2013,0.0,735664,0,0,0.0,defillama,lending,yellow,"tvl_low ($735,664)"
-4c45cc9e-e1a4-43c9-8a3d-687d96abb07c,2026-04-07 12:00:34+00:00,fluid-lending,Arbitrum,USDC,4.81,3.8,1.01,30584499,0,0,0.0,defillama,lending,green,none
-655edf24-3235-4fe3-a06a-f3bf8b259bc5,2026-04-07 12:00:34+00:00,zerobase-cedefi,Arbitrum,USDT,9.0,7.0,2.0,7941723,0,0,,,cedefi,green,none
-7aab7b0f-01c1-4467-bc0d-77826d870f19,2026-04-07 12:00:34+00:00,aave-v3,Arbitrum,USDC,1.8874,1.8874,0.0,727260,0,0,0.627932,onchain,lending,yellow,"tvl_low ($727,260)"
-85247b13-8180-44e7-b38c-4d324cc68a92,2026-04-07 12:00:34+00:00,compound-v3,Arbitrum,USDT,1.9459,1.9459,0.0,9418965,0,0,0.518571,onchain,lending,green,none
+03c3a7fe-96e7-438a-98fb-950b438e6ffc,2026-04-08 12:01:12+00:00,zerobase-cedefi,Arbitrum,USDC,9.0,7.0,2.0,813064,0,0,,,cedefi,yellow,"tvl_low ($813,064)"
+0c795123-f6a0-412f-92e8-11fbb598ac08,2026-04-08 12:01:12+00:00,yo-protocol,Arbitrum,USDC,5.0409,5.0409,0.0,554464,0,0,,,unknown,yellow,"tvl_low ($554,464)"
+1550613c-d60c-4d78-b370-0a7ec8a24dc7,2026-04-08 12:01:12+00:00,harmonix-finance,Arbitrum,USDC,5.5112,5.5112,0.0,915925,0,0,,,structured_product,yellow,"tvl_low ($915,925)"
+218505e7-996f-4a82-a845-6cf85734b00e,2026-04-08 12:01:12+00:00,woofi-earn,Arbitrum,USDC,4.742,4.742,0.0,1135517,0,0,,,yield_aggregator,green,none
+41ef5890-d6f4-4c54-9c39-4505a7bac672,2026-04-08 12:01:12+00:00,deltaprime,Arbitrum,USDC,7.0691,7.0691,0.0,735863,0,0,0.0,defillama,lending,yellow,"tvl_low ($735,863)"
+4c45cc9e-e1a4-43c9-8a3d-687d96abb07c,2026-04-08 12:01:12+00:00,fluid-lending,Arbitrum,USDC,4.76,3.7,1.06,30678794,0,0,0.0,defillama,lending,green,none
+655edf24-3235-4fe3-a06a-f3bf8b259bc5,2026-04-08 12:01:12+00:00,zerobase-cedefi,Arbitrum,USDT,9.0,7.0,2.0,7942280,0,0,,,cedefi,green,none
+7aab7b0f-01c1-4467-bc0d-77826d870f19,2026-04-08 12:01:12+00:00,aave-v3,Arbitrum,USDC,1.8903,1.8903,0.0,726174,0,0,0.636153,onchain,lending,yellow,"tvl_low ($726,174)"
+85247b13-8180-44e7-b38c-4d324cc68a92,2026-04-08 12:01:12+00:00,compound-v3,Arbitrum,USDT,1.7303,1.7303,0.0,10650271,0,0,0.48065,onchain,lending,green,none
 85f878ab-9ae3-4524-afa5-f1356dfb361f,2026-03-31 11:37:58+00:00,euler-v2,Arbitrum,USDC,2.2162,2.2162,0.0,781719,0,0,0.0,defillama,lending,yellow,"tvl_low ($781,719)"
-8d58514b-1013-4fb0-8cd0-0f1147ed16f4,2026-04-07 12:00:34+00:00,autofinance,Arbitrum,USDC,10.1218,7.6285,2.4933,835709,0,0,,,yield_aggregator,yellow,"tvl_low ($835,709)"
+8d58514b-1013-4fb0-8cd0-0f1147ed16f4,2026-04-08 12:01:12+00:00,autofinance,Arbitrum,USDC,10.0226,7.6285,2.3941,847815,0,0,,,yield_aggregator,red,"tvl_low ($847,815); apy_anomaly (10.0% vs median 3.2%)"
 91a13ad5-0687-4d6f-a789-da86b149d817,2026-03-31 11:37:58+00:00,euler-v2,Arbitrum,USDC,3.0354,3.0354,0.0,549101,0,0,0.0,defillama,lending,yellow,"tvl_low ($549,101)"
-a8e3d841-2788-4647-ad54-5a36fac451b1,2026-04-07 12:00:34+00:00,aave-v3,Arbitrum,DAI,1.8842,1.8842,0.0,1515861,0,0,0.6725,onchain,lending,green,none
-c48595c8-49bc-4853-80e4-f18c470bbfc3,2026-04-07 12:00:34+00:00,gains-network,Arbitrum,USDC,7.4785,7.4785,0.0,8794250,0,0,,,perpetuals_vault,green,none
-ce5e5dea-3782-4ce9-8f14-0222450116ae,2026-04-07 12:00:34+00:00,allbridge-classic,Arbitrum,USDC,0.0506,0.0506,0.0,695439,0,0,,,bridge,yellow,"tvl_low ($695,439)"
-d0e11625-79b9-40e3-b01f-a473af961995,2026-04-07 12:00:34+00:00,dolomite,Arbitrum,USDC,3.1261,3.1261,0.0,2528671,0,0,0.0,defillama,lending,green,none
-d8870f77-a386-4e31-affe-3a77320f041c,2026-04-07 12:00:34+00:00,beefy,Arbitrum,USDC,2.3346,0.0,0.0,1513552,0,0,,,yield_aggregator,green,none
-d9c395b9-00d0-4426-a6b3-572a6dd68e54,2026-04-07 12:00:34+00:00,compound-v3,Arbitrum,USDC,2.3373,2.3373,0.0,7129330,0,0,0.649242,onchain,lending,green,none
-d9fa8e14-0447-4207-9ae8-7810199dfa1f,2026-04-07 12:00:34+00:00,aave-v3,Arbitrum,USDC,1.5708,1.5708,0.0,98734205,0,0,0.627932,onchain,lending,green,none
-da45ac62-f5e8-4692-b939-cb4a085baa43,2026-04-07 12:00:34+00:00,euler-v2,Arbitrum,USDC,3.7077,3.7077,0.0,1097740,0,0,0.0,defillama,lending,yellow,tvl_drop (-15.2%)
+a8e3d841-2788-4647-ad54-5a36fac451b1,2026-04-08 12:01:12+00:00,aave-v3,Arbitrum,DAI,1.884,1.884,0.0,1516589,0,0,0.672467,onchain,lending,green,none
+c48595c8-49bc-4853-80e4-f18c470bbfc3,2026-04-08 12:01:12+00:00,gains-network,Arbitrum,USDC,7.3735,7.3735,0.0,8924576,0,0,,,perpetuals_vault,green,none
+ce5e5dea-3782-4ce9-8f14-0222450116ae,2026-04-08 12:01:12+00:00,allbridge-classic,Arbitrum,USDC,0.0394,0.0394,0.0,719072,0,0,,,bridge,yellow,"tvl_low ($719,072)"
+d0e11625-79b9-40e3-b01f-a473af961995,2026-04-08 12:01:12+00:00,dolomite,Arbitrum,USDC,2.0238,2.0238,0.0,4171303,0,0,0.0,defillama,lending,green,none
+d8870f77-a386-4e31-affe-3a77320f041c,2026-04-08 12:01:12+00:00,beefy,Arbitrum,USDC,2.3456,0.0,0.0,1513740,0,0,,,yield_aggregator,green,none
+d9c395b9-00d0-4426-a6b3-572a6dd68e54,2026-04-08 12:01:12+00:00,compound-v3,Arbitrum,USDC,2.3456,2.3456,0.0,7091709,0,0,0.649576,onchain,lending,green,none
+d9fa8e14-0447-4207-9ae8-7810199dfa1f,2026-04-08 12:01:12+00:00,aave-v3,Arbitrum,USDC,1.6065,1.6065,0.0,95727123,0,0,0.636153,onchain,lending,green,none
+da45ac62-f5e8-4692-b939-cb4a085baa43,2026-04-08 12:01:12+00:00,euler-v2,Arbitrum,USDC,3.2704,3.2704,0.0,1097424,0,0,0.0,defillama,lending,green,none
