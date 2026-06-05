@@ -1,22 +1,22 @@
 pool_id,timestamp,protocol,chain,symbol,apy_total,apy_base,apy_reward,tvl_usd,total_supply_usd,total_borrow_usd,utilization_rate,utilization_source,protocol_type,risk_label,risk_flags
-03c3a7fe-96e7-438a-98fb-950b438e6ffc,2026-06-04 11:42:27+00:00,zerobase-cedefi,Arbitrum,USDC,9.0,7.0,2.0,787064,0,0,,,cedefi,red,"tvl_low ($787,064); apy_anomaly (9.0% vs median 2.6%)"
-0c795123-f6a0-412f-92e8-11fbb598ac08,2026-06-04 11:42:27+00:00,yo-protocol,Arbitrum,USDC,4.0001,4.0001,0.0,574427,0,0,,,unknown,yellow,"tvl_low ($574,427)"
-1550613c-d60c-4d78-b370-0a7ec8a24dc7,2026-06-04 11:42:27+00:00,harmonix-finance,Arbitrum,USDC,5.112,5.112,0.0,654034,0,0,,,structured_product,yellow,"tvl_low ($654,034)"
-218505e7-996f-4a82-a845-6cf85734b00e,2026-06-04 11:42:27+00:00,woofi-earn,Arbitrum,USDC,2.4444,2.4444,0.0,708674,0,0,,,yield_aggregator,yellow,"tvl_low ($708,674)"
-41ef5890-d6f4-4c54-9c39-4505a7bac672,2026-06-04 11:42:27+00:00,deltaprime,Arbitrum,USDC,8.3395,8.3395,0.0,646990,0,0,0.0,defillama,lending,red,"tvl_low ($646,990); apy_anomaly (8.3% vs median 2.6%)"
-4c45cc9e-e1a4-43c9-8a3d-687d96abb07c,2026-06-04 11:42:27+00:00,fluid-lending,Arbitrum,USDC,7.44,7.44,0.0,37221497,0,0,0.0,defillama,lending,green,none
-655edf24-3235-4fe3-a06a-f3bf8b259bc5,2026-06-04 11:42:27+00:00,zerobase-cedefi,Arbitrum,USDT,9.0,7.0,2.0,7616585,0,0,,,cedefi,red,apy_anomaly (9.0% vs median 2.6%)
+03c3a7fe-96e7-438a-98fb-950b438e6ffc,2026-06-05 11:54:41+00:00,zerobase-cedefi,Arbitrum,USDC,9.0,7.0,2.0,787009,0,0,,,cedefi,red,"tvl_low ($787,009); apy_anomaly (9.0% vs median 2.6%)"
+0c795123-f6a0-412f-92e8-11fbb598ac08,2026-06-05 11:54:41+00:00,yo-protocol,Arbitrum,USDC,3.8643,3.8643,0.0,574034,0,0,,,unknown,yellow,"tvl_low ($574,034)"
+1550613c-d60c-4d78-b370-0a7ec8a24dc7,2026-06-05 11:54:41+00:00,harmonix-finance,Arbitrum,USDC,5.1552,5.1552,0.0,641069,0,0,,,structured_product,yellow,"tvl_low ($641,069)"
+218505e7-996f-4a82-a845-6cf85734b00e,2026-06-05 11:54:41+00:00,woofi-earn,Arbitrum,USDC,2.6465,2.6465,0.0,708723,0,0,,,yield_aggregator,yellow,"tvl_low ($708,723)"
+41ef5890-d6f4-4c54-9c39-4505a7bac672,2026-06-05 11:54:41+00:00,deltaprime,Arbitrum,USDC,8.3824,8.3824,0.0,645873,0,0,0.0,defillama,lending,red,"tvl_low ($645,873); apy_anomaly (8.4% vs median 2.6%)"
+4c45cc9e-e1a4-43c9-8a3d-687d96abb07c,2026-06-05 11:54:41+00:00,fluid-lending,Arbitrum,USDC,4.62,4.62,0.0,36982964,0,0,0.0,defillama,lending,green,none
+655edf24-3235-4fe3-a06a-f3bf8b259bc5,2026-06-05 11:54:41+00:00,zerobase-cedefi,Arbitrum,USDT,9.0,7.0,2.0,7618774,0,0,,,cedefi,red,apy_anomaly (9.0% vs median 2.6%)
 7aab7b0f-01c1-4467-bc0d-77826d870f19,2026-04-19 09:36:51+00:00,aave-v3,Arbitrum,USDC,1.8958,1.8958,0.0,717836,0,0,0.725215,onchain,lending,yellow,"tvl_low ($717,836)"
-85247b13-8180-44e7-b38c-4d324cc68a92,2026-06-04 11:42:27+00:00,compound-v3,Arbitrum,USDT,1.9906,1.9906,0.0,8831654,0,0,0.550413,onchain,lending,green,none
+85247b13-8180-44e7-b38c-4d324cc68a92,2026-06-05 11:54:41+00:00,compound-v3,Arbitrum,USDT,1.9688,1.9688,0.0,8954212,0,0,0.546625,onchain,lending,green,none
 85f878ab-9ae3-4524-afa5-f1356dfb361f,2026-05-04 10:52:50+00:00,euler-v2,Arbitrum,USDC,1.4208,1.4208,0.0,591940,0,0,0.0,defillama,lending,yellow,"tvl_low ($591,940)"
-8d58514b-1013-4fb0-8cd0-0f1147ed16f4,2026-06-04 11:42:27+00:00,autofinance,Arbitrum,USDC,8.1867,5.621,2.5657,790467,0,0,,,yield_aggregator,red,"tvl_low ($790,467); apy_anomaly (8.2% vs median 2.6%)"
+8d58514b-1013-4fb0-8cd0-0f1147ed16f4,2026-06-05 11:54:41+00:00,autofinance,Arbitrum,USDC,8.1665,5.767,2.3995,774896,0,0,,,yield_aggregator,red,"tvl_low ($774,896); apy_anomaly (8.2% vs median 2.6%)"
 91a13ad5-0687-4d6f-a789-da86b149d817,2026-03-31 11:37:58+00:00,euler-v2,Arbitrum,USDC,3.0354,3.0354,0.0,549101,0,0,0.0,defillama,lending,yellow,"tvl_low ($549,101)"
-a8e3d841-2788-4647-ad54-5a36fac451b1,2026-06-04 11:42:27+00:00,aave-v3,Arbitrum,DAI,2.0335,2.0335,0.0,1131058,0,0,0.698637,onchain,lending,green,none
+a8e3d841-2788-4647-ad54-5a36fac451b1,2026-06-05 11:54:41+00:00,aave-v3,Arbitrum,DAI,1.931,1.931,0.0,1198216,0,0,0.680849,onchain,lending,green,none
 b22b6780-61ca-48d5-a18a-9b9f055c7e63,2026-04-23 10:12:20+00:00,merkl,Arbitrum,USDC,0.0,0.0,0.0,3199319,0,0,,,unknown,yellow,age_unknown
-c48595c8-49bc-4853-80e4-f18c470bbfc3,2026-06-04 11:42:27+00:00,gains-network,Arbitrum,USDC,9.841,9.841,0.0,6108261,0,0,,,perpetuals_vault,red,apy_anomaly (9.8% vs median 2.6%)
-ce5e5dea-3782-4ce9-8f14-0222450116ae,2026-06-04 11:42:27+00:00,allbridge-classic,Arbitrum,USDC,0.0608,0.0608,0.0,575459,0,0,,,bridge,yellow,"tvl_low ($575,459)"
-d0e11625-79b9-40e3-b01f-a473af961995,2026-06-04 11:42:27+00:00,dolomite,Arbitrum,USDC,2.7414,2.7414,0.0,2449791,0,0,0.0,defillama,lending,green,none
+c48595c8-49bc-4853-80e4-f18c470bbfc3,2026-06-05 11:54:41+00:00,gains-network,Arbitrum,USDC,11.2547,11.2547,0.0,6107832,0,0,,,perpetuals_vault,red,apy_anomaly (11.3% vs median 2.6%)
+ce5e5dea-3782-4ce9-8f14-0222450116ae,2026-06-05 11:54:41+00:00,allbridge-classic,Arbitrum,USDC,0.0648,0.0648,0.0,568971,0,0,,,bridge,yellow,"tvl_low ($568,971)"
+d0e11625-79b9-40e3-b01f-a473af961995,2026-06-05 11:54:41+00:00,dolomite,Arbitrum,USDC,2.6086,2.6086,0.0,2423509,0,0,0.0,defillama,lending,green,none
 d8870f77-a386-4e31-affe-3a77320f041c,2026-04-30 10:44:24+00:00,beefy,Arbitrum,USDC,2.4246,0.0,0.0,1152415,0,0,,,yield_aggregator,green,none
-d9c395b9-00d0-4426-a6b3-572a6dd68e54,2026-06-04 11:42:27+00:00,compound-v3,Arbitrum,USDC,2.5597,2.5597,0.0,5246170,0,0,0.710598,onchain,lending,green,none
-d9fa8e14-0447-4207-9ae8-7810199dfa1f,2026-06-04 11:42:27+00:00,aave-v3,Arbitrum,USDC,2.5561,2.5561,0.0,35606905,0,0,0.799619,onchain,lending,green,none
+d9c395b9-00d0-4426-a6b3-572a6dd68e54,2026-06-05 11:54:41+00:00,compound-v3,Arbitrum,USDC,2.5404,2.5404,0.0,5341309,0,0,0.70836,onchain,lending,green,none
+d9fa8e14-0447-4207-9ae8-7810199dfa1f,2026-06-05 11:54:41+00:00,aave-v3,Arbitrum,USDC,2.4141,2.4141,0.0,39874490,0,0,0.776873,onchain,lending,green,none
 da45ac62-f5e8-4692-b939-cb4a085baa43,2026-06-01 14:45:44+00:00,euler-v2,Arbitrum,USDC,1.2884,1.2884,0.0,559857,0,0,0.0,defillama,lending,yellow,"tvl_low ($559,857)"
