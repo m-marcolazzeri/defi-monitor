@@ -1,22 +1,22 @@
 pool_id,timestamp,protocol,chain,symbol,apy_total,apy_base,apy_reward,tvl_usd,total_supply_usd,total_borrow_usd,utilization_rate,utilization_source,protocol_type,risk_label,risk_flags
-03c3a7fe-96e7-438a-98fb-950b438e6ffc,2026-07-02 11:24:34+00:00,zerobase-cedefi,Arbitrum,USDC,9.0,7.0,2.0,784709,0,0,,,cedefi,red,"tvl_low ($784,709); apy_anomaly (9.0% vs median 2.6%)"
-0c795123-f6a0-412f-92e8-11fbb598ac08,2026-07-02 11:24:34+00:00,yo-protocol,Arbitrum,USDC,4.0336,4.0336,0.0,552585,0,0,,,unknown,yellow,"tvl_low ($552,585)"
-1550613c-d60c-4d78-b370-0a7ec8a24dc7,2026-07-02 11:24:34+00:00,harmonix-finance,Arbitrum,USDC,7.2125,7.2125,0.0,613862,0,0,,,structured_product,yellow,"tvl_low ($613,862)"
+03c3a7fe-96e7-438a-98fb-950b438e6ffc,2026-07-03 11:23:32+00:00,zerobase-cedefi,Arbitrum,USDC,9.0,7.0,2.0,784436,0,0,,,cedefi,red,"tvl_low ($784,436); apy_anomaly (9.0% vs median 2.6%)"
+0c795123-f6a0-412f-92e8-11fbb598ac08,2026-07-03 11:23:32+00:00,yo-protocol,Arbitrum,USDC,4.0286,4.0286,0.0,535850,0,0,,,unknown,yellow,"tvl_low ($535,850)"
+1550613c-d60c-4d78-b370-0a7ec8a24dc7,2026-07-03 11:23:32+00:00,harmonix-finance,Arbitrum,USDC,7.4359,7.4359,0.0,612625,0,0,,,structured_product,yellow,"tvl_low ($612,625)"
 218505e7-996f-4a82-a845-6cf85734b00e,2026-06-14 11:21:11+00:00,woofi-earn,Arbitrum,USDC,2.6467,2.6467,0.0,709151,0,0,,,yield_aggregator,yellow,"tvl_low ($709,151)"
-41ef5890-d6f4-4c54-9c39-4505a7bac672,2026-07-02 11:24:34+00:00,deltaprime,Arbitrum,USDC,9.0918,9.0918,0.0,658493,0,0,0.0,defillama,lending,red,"tvl_low ($658,493); apy_anomaly (9.1% vs median 2.6%)"
-4c45cc9e-e1a4-43c9-8a3d-687d96abb07c,2026-07-02 11:24:34+00:00,fluid-lending,Arbitrum,USDC,5.87,5.87,0.0,36901469,0,0,0.0,defillama,lending,green,none
-655edf24-3235-4fe3-a06a-f3bf8b259bc5,2026-07-02 11:24:34+00:00,zerobase-cedefi,Arbitrum,USDT,9.0,7.0,2.0,7626345,0,0,,,cedefi,red,apy_anomaly (9.0% vs median 2.6%)
+41ef5890-d6f4-4c54-9c39-4505a7bac672,2026-07-03 11:23:32+00:00,deltaprime,Arbitrum,USDC,10.8109,10.8109,0.0,634662,0,0,0.0,defillama,lending,red,"tvl_low ($634,662); apy_anomaly (10.8% vs median 2.6%)"
+4c45cc9e-e1a4-43c9-8a3d-687d96abb07c,2026-07-03 11:23:32+00:00,fluid-lending,Arbitrum,USDC,6.19,6.19,0.0,37359900,0,0,0.0,defillama,lending,green,none
+655edf24-3235-4fe3-a06a-f3bf8b259bc5,2026-07-03 11:23:32+00:00,zerobase-cedefi,Arbitrum,USDT,9.0,7.0,2.0,7629012,0,0,,,cedefi,red,apy_anomaly (9.0% vs median 2.6%)
 7aab7b0f-01c1-4467-bc0d-77826d870f19,2026-04-19 09:36:51+00:00,aave-v3,Arbitrum,USDC,1.8958,1.8958,0.0,717836,0,0,0.725215,onchain,lending,yellow,"tvl_low ($717,836)"
-85247b13-8180-44e7-b38c-4d324cc68a92,2026-07-02 11:24:34+00:00,compound-v3,Arbitrum,USDT,1.8496,1.8496,0.0,9584024,0,0,0.513785,onchain,lending,green,none
+85247b13-8180-44e7-b38c-4d324cc68a92,2026-07-03 11:23:32+00:00,compound-v3,Arbitrum,USDT,1.851,1.851,0.0,9580019,0,0,0.514175,onchain,lending,green,none
 85f878ab-9ae3-4524-afa5-f1356dfb361f,2026-05-04 10:52:50+00:00,euler-v2,Arbitrum,USDC,1.4208,1.4208,0.0,591940,0,0,0.0,defillama,lending,yellow,"tvl_low ($591,940)"
-8d58514b-1013-4fb0-8cd0-0f1147ed16f4,2026-07-02 11:24:34+00:00,autofinance,Arbitrum,USDC,7.6709,6.059,1.6119,792529,0,0,,,yield_aggregator,yellow,"tvl_low ($792,529)"
+8d58514b-1013-4fb0-8cd0-0f1147ed16f4,2026-07-03 11:23:32+00:00,autofinance,Arbitrum,USDC,7.5362,5.84,1.6963,792792,0,0,,,yield_aggregator,yellow,"tvl_low ($792,792)"
 91a13ad5-0687-4d6f-a789-da86b149d817,2026-03-31 11:37:58+00:00,euler-v2,Arbitrum,USDC,3.0354,3.0354,0.0,549101,0,0,0.0,defillama,lending,yellow,"tvl_low ($549,101)"
-a8e3d841-2788-4647-ad54-5a36fac451b1,2026-07-02 11:24:34+00:00,aave-v3,Arbitrum,DAI,1.8235,1.8235,0.0,1263954,0,0,0.66181,onchain,lending,green,none
+a8e3d841-2788-4647-ad54-5a36fac451b1,2026-07-03 11:23:32+00:00,aave-v3,Arbitrum,DAI,1.8061,1.8061,0.0,1275647,0,0,0.658424,onchain,lending,green,none
 b22b6780-61ca-48d5-a18a-9b9f055c7e63,2026-04-23 10:12:20+00:00,merkl,Arbitrum,USDC,0.0,0.0,0.0,3199319,0,0,,,unknown,yellow,age_unknown
-c48595c8-49bc-4853-80e4-f18c470bbfc3,2026-07-02 11:24:34+00:00,gains-network,Arbitrum,USDC,10.9563,10.9563,0.0,6853888,0,0,,,perpetuals_vault,red,apy_anomaly (11.0% vs median 2.6%)
-ce5e5dea-3782-4ce9-8f14-0222450116ae,2026-07-02 11:24:34+00:00,allbridge-classic,Arbitrum,USDC,0.0673,0.0673,0.0,562348,0,0,,,bridge,yellow,"tvl_low ($562,348)"
-d0e11625-79b9-40e3-b01f-a473af961995,2026-07-02 11:24:34+00:00,dolomite,Arbitrum,USDC,4.206,4.206,0.0,1489127,0,0,0.0,defillama,lending,green,none
+c48595c8-49bc-4853-80e4-f18c470bbfc3,2026-07-03 11:23:32+00:00,gains-network,Arbitrum,USDC,10.4255,10.4255,0.0,6845204,0,0,,,perpetuals_vault,red,apy_anomaly (10.4% vs median 2.6%)
+ce5e5dea-3782-4ce9-8f14-0222450116ae,2026-07-03 11:23:32+00:00,allbridge-classic,Arbitrum,USDC,0.0693,0.0693,0.0,563945,0,0,,,bridge,yellow,"tvl_low ($563,945)"
+d0e11625-79b9-40e3-b01f-a473af961995,2026-07-03 11:23:32+00:00,dolomite,Arbitrum,USDC,4.3369,4.3369,0.0,1440494,0,0,0.0,defillama,lending,green,none
 d8870f77-a386-4e31-affe-3a77320f041c,2026-04-30 10:44:24+00:00,beefy,Arbitrum,USDC,2.4246,0.0,0.0,1152415,0,0,,,yield_aggregator,green,none
-d9c395b9-00d0-4426-a6b3-572a6dd68e54,2026-07-02 11:24:34+00:00,compound-v3,Arbitrum,USDC,2.541,2.541,0.0,4712479,0,0,0.705571,onchain,lending,green,none
-d9fa8e14-0447-4207-9ae8-7810199dfa1f,2026-07-02 11:24:34+00:00,aave-v3,Arbitrum,USDC,2.5255,2.5255,0.0,34482731,0,0,0.794778,onchain,lending,green,none
+d9c395b9-00d0-4426-a6b3-572a6dd68e54,2026-07-03 11:23:32+00:00,compound-v3,Arbitrum,USDC,2.5688,2.5688,0.0,4556619,0,0,0.713482,onchain,lending,green,none
+d9fa8e14-0447-4207-9ae8-7810199dfa1f,2026-07-03 11:23:32+00:00,aave-v3,Arbitrum,USDC,2.4906,2.4906,0.0,35803772,0,0,0.790032,onchain,lending,green,none
 da45ac62-f5e8-4692-b939-cb4a085baa43,2026-06-01 14:45:44+00:00,euler-v2,Arbitrum,USDC,1.2884,1.2884,0.0,559857,0,0,0.0,defillama,lending,yellow,"tvl_low ($559,857)"
