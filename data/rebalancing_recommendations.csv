@@ -1,3 +1,4 @@
 protocol,symbol,apy_total,tvl_usd,risk_label,current_protocol,current_apy,apy_improvement,gross_gain_usd,net_benefit_usd,breakeven_days,gas_cost_usd,capital_usd,horizon_days,recommendation
-compound-v3,USDC,3.0249,2354298,green,aave-v3,1.8958,1.1291000000000002,0.018198617260273976,-0.381801382739726,659.4,0.4,19.61,30,WAIT
+fluid-lending,USDC,5.26,55797361,green,aave-v3,1.8958,3.3642,0.0542235304109589,-0.3457764695890411,221.3,0.4,19.61,30,WAIT
+compound-v3,USDC,3.026,2348842,green,aave-v3,1.8958,1.1301999999999999,0.018216346849315068,-0.38178365315068497,658.7,0.4,19.61,30,WAIT
 beefy,USDC,2.4246,1152415,green,aave-v3,1.8958,0.5287999999999999,0.008523096986301368,-0.39147690301369864,1407.9,0.4,19.61,30,WAIT
